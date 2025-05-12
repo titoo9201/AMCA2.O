@@ -1,8 +1,10 @@
 import React, { use, useContext } from 'react'
 import "./App.css"
-import va from"./assets/TI.png"
+import va from "./assets/TI.png";
 import { CiMicrophoneOn } from "react-icons/ci";
-import { datacontext } from './context/usercontext';
+import { datacontext } from './context/Usercontext';
+
+
 import img from "./assets/speak.gif"
 import wav from "./assets/aiVoice.gif"
 
