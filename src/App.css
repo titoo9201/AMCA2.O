@@ -1,0 +1,62 @@
+.main{
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  padding: 20px;
+  margin-top: 10px;
+}
+#amca
+{
+  height: 70%;
+}
+span{
+  background:linear-gradient(to right,rgb(50, 210, 235),rgb(229, 109, 199));
+  font-size: 2vmax;
+  background-clip: text;
+  color: transparent;
+}
+button
+{
+  width: 180px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 26px;
+ border-radius: 20px;
+ border: none;
+ background-color: rgb(127, 233, 233);
+ box-shadow: 2px 2px 50px  rgb(127, 233, 233);
+
+}
+#img{
+  width:100px ;
+  
+
+}
+p{
+  font-size: 1.5vmax;
+  color: white;
+  text-align: center;
+  padding: 0px 40px;
+
+}
+.gif
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+
+}
+#wav
+{
+  width: 50vh;
+  height: 100px;
+}
