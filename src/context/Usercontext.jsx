@@ -115,14 +115,7 @@ else if(command.includes("open")&&command.includes("instagram"))
   {
     setPrompt("opening whatsapp...")
     speak("opening whatsapp")
-    window.open("https://www.whatsapp.com/")
-    setResponse(true)
-  } 
-  else if(command.includes("open")&&command.includes("telegram")) 
-  {
-    setPrompt("opening whatsapp...")
-    speak("opening whatsapp")
-    window.open("https://www.telegram.com/")
+    window.open("whatsapp://")
     setResponse(true)
   }  
 else if (command.includes("date")) {
