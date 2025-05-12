@@ -1,6 +1,6 @@
 
 import { createContext, useState } from 'react'
-import run from '../GEMNI';
+import run from '../gemni';
 export const datacontext=createContext()
 
 function Usercontext({children}) { // speak function bol rahi hai ye 
