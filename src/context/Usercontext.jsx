@@ -18,18 +18,10 @@ let[response,setResponse]=useState(false)
 
   const setVoiceAndSpeak = () => {
     const voices = synth.getVoices();
-    
-    let selectedVoice = voices.find(v => v.lang === "hi-IN");
 
-    if (!selectedVoice) {
-      selectedVoice = voices.find(v =>
-        v.name.toLowerCase().includes("hindi")
-      );
-    }
-
-    if (!selectedVoice) {
-      selectedVoice = voices[0]; // fallback
-    }
+    let selectedVoice = voices.find(v => v.lang === "hi-IN") ||
+                        voices.find(v => v.name.toLowerCase().includes("hindi")) ||
+                        voices[0]; // fallback
 
     text_speak.voice = selectedVoice;
     text_speak.lang = selectedVoice.lang;
@@ -45,13 +37,17 @@ let[response,setResponse]=useState(false)
     synth.speak(text_speak);
   };
 
-  // Some browsers (especially mobile) load voices asynchronously
   if (synth.getVoices().length === 0) {
-    synth.onvoiceschanged = setVoiceAndSpeak;
+    const handleVoicesChanged = () => {
+      setVoiceAndSpeak();
+      synth.removeEventListener('voiceschanged', handleVoicesChanged);
+    };
+    synth.addEventListener('voiceschanged', handleVoicesChanged);
   } else {
     setVoiceAndSpeak();
   }
 }
+
 
  async function AIrespone(prompt)
 {
