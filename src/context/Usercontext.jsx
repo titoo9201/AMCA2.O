@@ -8,24 +8,51 @@ let [speaking,setSpeaking]=useState(false)
 let[prompt,setPrompt]=useState("listening....")
 let[response,setResponse]=useState(false)
 
-  function speak(text){
-    window.speechSynthesis.cancel();
-    const text_speak=new SpeechSynthesisUtterance(text)
-    text_speak.volume=1;
-    text_speak.rate=1;
-    text_speak.pitch=1;
-    text_speak.lang="hi-IN"
-    text_speak.onend = () => {
-    setSpeaking(false); 
-    
-  }
-  text_speak.onerror = (e) => {
-    console.error("Speech error:", e.error); 
-    setSpeaking(false);
-  };
-    window.speechSynthesis.speak(text_speak)
+ function speak(text) {
+  window.speechSynthesis.cancel();
+  const synth = window.speechSynthesis;
+  const text_speak = new SpeechSynthesisUtterance(text);
+  text_speak.volume = 1;
+  text_speak.rate = 1;
+  text_speak.pitch = 1;
 
-  } 
+  const setVoiceAndSpeak = () => {
+    const voices = synth.getVoices();
+    
+    let selectedVoice = voices.find(v => v.lang === "hi-IN");
+
+    if (!selectedVoice) {
+      selectedVoice = voices.find(v =>
+        v.name.toLowerCase().includes("hindi")
+      );
+    }
+
+    if (!selectedVoice) {
+      selectedVoice = voices[0]; // fallback
+    }
+
+    text_speak.voice = selectedVoice;
+    text_speak.lang = selectedVoice.lang;
+
+    text_speak.onend = () => {
+      setSpeaking(false);
+    };
+    text_speak.onerror = (e) => {
+      console.error("Speech error:", e.error);
+      setSpeaking(false);
+    };
+
+    synth.speak(text_speak);
+  };
+
+  // Some browsers (especially mobile) load voices asynchronously
+  if (synth.getVoices().length === 0) {
+    synth.onvoiceschanged = setVoiceAndSpeak;
+  } else {
+    setVoiceAndSpeak();
+  }
+}
+
  async function AIrespone(prompt)
 {
 let text= await run(prompt)
