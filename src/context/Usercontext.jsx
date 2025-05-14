@@ -136,6 +136,14 @@ else if (command.includes("date")) {
   setResponse(true);
 }   
 
+else if(command.includes("what is your name"))
+    {
+    setPrompt("my name is AMCA ")
+    speak("my name is AMCA")
+    setResponse(true)
+    
+    }
+
 else 
 {
   AIrespone(command)
