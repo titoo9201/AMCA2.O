@@ -114,8 +114,12 @@ else if(command.includes("open")&&command.includes("instagram"))
     window.open("whatsapp://")
     setResponse(true)
   }  
-else if (command.includes("date")&&command.includes("tarikh")) {
-  const now = new Date();
+else if (command.includes("date") || command.includes("tarikh")) {
+  // Get time string in India timezone
+  const indiaTimeString = new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
+
+  // Convert it back to Date object (now in India time)
+  const indiaDate = new Date(indiaTimeString);
 
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const months = [
@@ -123,20 +127,21 @@ else if (command.includes("date")&&command.includes("tarikh")) {
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
 
-  const dayName = days[now.getDay()];
-  const day = now.getDate();
-  const monthName = months[now.getMonth()];
-  const year = now.getFullYear();
+  const dayName = days[indiaDate.getDay()];
+  const day = indiaDate.getDate();
+  const monthName = months[indiaDate.getMonth()];
+  const year = indiaDate.getFullYear();
 
   const formattedDate = `${dayName}, ${day} ${monthName} ${year}`;
 
-  console.log("Formatted Date:", formattedDate);
+  console.log("Correct India Date:", formattedDate);
   setPrompt(formattedDate);
   speak(formattedDate);
   setResponse(true);
-}   
+}
+  
 
-else if(command.includes("what is your name")&&command.includes("name"))
+else if(command.includes("what is your name")||command.includes("name"))
     {
     setPrompt("my name is AMCA ")
     speak("my name is AMCA")
