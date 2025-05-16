@@ -114,7 +114,7 @@ else if(command.includes("open")&&command.includes("instagram"))
     window.open("whatsapp://")
     setResponse(true)
   }  
-else if (command.includes("date")) {
+else if (command.includes("date")&&command.includes("tarikh")) {
   const now = new Date();
 
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
