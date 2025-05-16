@@ -136,7 +136,7 @@ else if (command.includes("date")) {
   setResponse(true);
 }   
 
-else if(command.includes("what is your name"))
+else if(command.includes("what is your name")&&command.includes("name"))
     {
     setPrompt("my name is AMCA ")
     speak("my name is AMCA")
